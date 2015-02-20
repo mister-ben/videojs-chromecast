@@ -109,7 +109,7 @@
       if (this.player_.mediainfo && this.player_.mediainfo.name) {
         mediaInfo.metadata = new chrome.cast.media.GenericMediaMetadata();
         mediaInfo.metadata.title = this.player_.mediainfo.name;
-        if (this.player_.mediainfo.description) {
+        if (this.player_.mediainfo.description !== this.player_.mediainfo.name) {
           mediaInfo.metadata.subtitle = this.player_.mediainfo.description;
         }
         image = new chrome.cast.Image(this.player_.mediainfo.poster);
