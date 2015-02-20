@@ -68,7 +68,16 @@ class vjs.ChromecastComponent extends vjs.Button
 
     mediaInfo = new chrome.cast.media.MediaInfo @player_.currentSrc(), @player_.currentType()
 
-    if @settings.metadata
+    # Support mediainfo property
+    if @player_.mediainfo and @player_.mediainfo.name
+      mediaInfo.metadata = new chrome.cast.media.GenericMediaMetadata();
+      mediaInfo.metadata.title = @player_.mediainfo.name
+      mediaInfo.metadata.subtitle = @player_.mediainfo.description if @player_.mediainfo.description
+      image = new chrome.cast.Image(@player_.mediainfo.poster)
+      mediaInfo.metadata.images = [image]
+      mediaInfo.metadata.metadataType = chrome.cast.media.MetadataType.MOVIE
+
+    else if @settings and @settings.metadata
       mediaInfo.metadata = new chrome.cast.media.GenericMediaMetadata()
 
       for key, value of @settings.metadata
