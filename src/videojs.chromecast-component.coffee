@@ -73,7 +73,7 @@ class vjs.ChromecastComponent extends vjs.Button
       mediaInfo.metadata = new chrome.cast.media.GenericMediaMetadata();
       mediaInfo.metadata.title = @player_.mediainfo.name
       if @player_.mediainfo.description isnt @player_.mediainfo.name
-        mediaInfo.metadata.subtitle = @player_.mediainfo.description 
+        mediaInfo.metadata.subtitle = @player_.mediainfo.description
       image = new chrome.cast.Image(@player_.mediainfo.poster)
       mediaInfo.metadata.images = [image]
       mediaInfo.metadata.metadataType = chrome.cast.media.MetadataType.MOVIE
@@ -207,6 +207,9 @@ class vjs.ChromecastComponent extends vjs.Button
     @casting = false
     @removeClass "connected"
 
+    if @player_.mediainfo
+      @player_.src @player_.mediainfo.sources
+    
     @player_.src @player_.options_["sources"]
 
     # Hide the default HTML5 player controls.
