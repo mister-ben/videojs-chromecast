@@ -209,8 +209,9 @@ class vjs.ChromecastComponent extends vjs.Button
 
     if @player_.mediainfo
       @player_.src @player_.mediainfo.sources
-    
-    @player_.src @player_.options_["sources"]
+
+    else
+      @player_.src @player_.options_["sources"]
 
     # Hide the default HTML5 player controls.
     @player_.tech.setControls(false)

@@ -268,8 +268,9 @@
       this.removeClass("connected");
       if (this.player_.mediainfo) {
         this.player_.src(this.player_.mediainfo.sources);
+      } else {
+        this.player_.src(this.player_.options_["sources"]);
       }
-      this.player_.src(this.player_.options_["sources"]);
       this.player_.tech.setControls(false);
       this.player_.options_.inactivityTimeout = this.inactivityTimeout;
       this.apiMedia = null;
